@@ -1,0 +1,916 @@
+/* ============================================================
+   ANDRZEJ MAJKA — 3D DEPTH CAROUSEL PORTFOLIO
+   5 pages as liquid-glass panels floating in depth.
+   Accent palette: copper/amber (sampled from reference image),
+   replacing the old blue accent everywhere except cube buttons.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   GLOBAL BASE
+------------------------------------------------------------ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color: #d6e2ff;
+
+    background: url('../images/background-new.png') center center / cover no-repeat fixed;
+
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #FFD65C;
+    text-shadow: 0 0 12px rgba(255,214,92,0.6);
+}
+
+p {
+    color: #bcd9ff;
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   BUTTONS (non-cube, e.g. legacy usage)
+------------------------------------------------------------ */
+.primary-btn, .secondary-btn {
+    padding: 12px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: #FFD65C;
+    background: rgba(10,13,19,0.85);
+    border: 2px solid rgba(255,214,92,0.55);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 12px;
+    box-shadow:
+        0 0 12px rgba(255,214,92,0.35),
+        inset 0 0 8px rgba(255,214,92,0.25);
+    transition: 0.2s ease;
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+    transform: translateY(-3px);
+}
+
+.primary-btn {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    margin-top: 10px;
+}
+
+/* ------------------------------------------------------------
+   SIDE ARROWS — copper accent
+------------------------------------------------------------ */
+.side-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 52px;
+    color: rgba(196,130,110,0.8);
+    text-shadow: 0 0 10px rgba(196,130,110,0.4);
+    cursor: pointer;
+    z-index: 999999;
+    transition: 0.3s ease;
+    user-select: none;
+}
+
+.side-arrow:hover,
+.side-arrow:active {
+    color: rgba(226,160,140,0.95);
+    text-shadow: 0 0 25px rgba(226,160,140,0.9);
+}
+
+#arrow-left-big { left: 20px; }
+#arrow-right-big { right: 20px; }
+
+.arrow-label-left,
+.arrow-label-right {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #d99a82;
+    text-shadow: 0 0 12px rgba(196,130,110,0.6);
+    margin: 0 10px;
+    opacity: 1;
+}
+
+.side-arrow:hover .arrow-label-left,
+.side-arrow:active .arrow-label-left,
+.side-arrow:hover .arrow-label-right,
+.side-arrow:active .arrow-label-right {
+    color: #ffffff;
+    text-shadow: 0 0 16px rgba(226,160,140,0.9);
+}
+
+
+/* ============================================================
+   3D DEPTH CAROUSEL — the core navigation system
+   ============================================================ */
+#carousel-stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1600px;
+    perspective-origin: 50% 50%;
+}
+
+#carousel-track {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* The glass panel itself — one shared look for all 5 pages */
+.carousel-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80vw;
+    max-width: 1300px;
+    height: 82vh;
+    box-sizing: border-box;
+    padding: 30px 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+
+    border-radius: 22px;
+    background: linear-gradient(155deg,
+        rgba(190,155,135,0.10) 0%,
+        rgba(60,48,44,0.26) 55%,
+        rgba(14,12,11,0.34) 100%);
+    border: 1px solid rgba(196,130,110,0.4);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.18),
+        inset 0 -30px 50px rgba(0,0,0,0.3),
+        0 0 45px rgba(196,130,110,0.15);
+    backdrop-filter: blur(4px) saturate(1.3);
+
+    will-change: transform, filter, opacity;
+    backface-visibility: hidden;
+    transition: filter 0.1s linear;
+}
+
+.carousel-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 35%;
+    border-radius: 22px 22px 0 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent);
+    pointer-events: none;
+}
+
+.carousel-panel > h2,
+.carousel-panel > .projects-header,
+.carousel-panel > .expertise-header,
+.carousel-panel > .contact-header {
+    flex-shrink: 0;
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+/* Only the scrollable body inside each panel grows/scrolls */
+.about-scroll,
+.projects-scroll,
+.expertise-scroll,
+.contact-scroll {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow-y: auto;
+    touch-action: pan-y;              /* tells the browser: vertical drag here is scroll, not page-swipe */
+    -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS Safari */
+}
+
+.about-scroll::-webkit-scrollbar,
+.projects-scroll::-webkit-scrollbar,
+.expertise-scroll::-webkit-scrollbar,
+.contact-scroll::-webkit-scrollbar { width: 8px; }
+
+.about-scroll::-webkit-scrollbar-track,
+.projects-scroll::-webkit-scrollbar-track,
+.expertise-scroll::-webkit-scrollbar-track,
+.contact-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
+
+.about-scroll::-webkit-scrollbar-thumb,
+.projects-scroll::-webkit-scrollbar-thumb,
+.expertise-scroll::-webkit-scrollbar-thumb,
+.contact-scroll::-webkit-scrollbar-thumb { background: rgba(196,130,110,0.5); border-radius: 4px; }
+
+
+/* ============================================================
+   HOME — sits inside a panel like every other page now
+   ============================================================ */
+.home-panel-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+/* Home gets far more transparent glass than other pages — the
+   background art is the point here, the panel should barely
+   tint it, not hide it. */
+#home.carousel-panel {
+    background: linear-gradient(155deg,
+        rgba(190,155,135,0.02) 0%,
+        rgba(60,48,44,0.04) 55%,
+        rgba(14,12,11,0.06) 100%);
+    border: 1px solid rgba(196,130,110,0.12);
+    box-shadow: none;
+    backdrop-filter: blur(1px) saturate(1.05);
+}
+
+.hero-title-wrap {
+    text-align: center;
+}
+
+.ghost-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 12px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    color: #eaf3ff;
+}
+
+.ghost-title .letter {
+    display: inline-block;
+    color: #6b6f78;
+    opacity: 0.5;
+    text-shadow: none;
+    transition: color 0.35s ease, text-shadow 0.35s ease, opacity 0.35s ease;
+}
+
+.ghost-title .letter.locked {
+    color: #ffffff;
+    opacity: 1;
+    text-shadow: 0 0 22px rgba(226,160,140,0.85);
+}
+
+.ghost-title::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(226,180,160,0.4), transparent);
+    transform: skewX(-20deg);
+    animation: sweep 1.2s ease-out forwards;
+    animation-delay: 1.4s;
+    pointer-events: none;
+}
+
+@keyframes sweep {
+    to { left: 130%; }
+}
+
+.ghost-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #f0dcd0;
+    text-shadow: 0 0 14px rgba(226,160,140,0.5);
+    margin: 10px 0 0;
+    opacity: 0;
+    text-transform: lowercase;
+    animation: subtitleFadeIn 1.8s ease-out forwards;
+    animation-delay: 1.6s;
+}
+
+@keyframes subtitleFadeIn {
+    0%   { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.explore-hint {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: lowercase;
+    color: #f0dcd0;
+    text-shadow: 0 0 12px rgba(226,160,140,0.45);
+    opacity: 0;
+    margin: 0;
+    animation:
+        hintFadeIn 1.5s ease-out forwards,
+        hintPulse 2.6s ease-in-out infinite;
+    animation-delay: 4.0s, 5.5s;
+}
+
+@keyframes hintFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 0.95; transform: translateY(0); }
+}
+
+@keyframes hintPulse {
+    0%, 100% { opacity: 0.95; }
+    50% { opacity: 0.55; }
+}
+
+
+/* ============================================================
+   PHYSICAL DEPTH CARDS
+   Flat glass cards — never rotate. Depth is created by a cursor-
+   driven light/shadow that moves across the surface instead,
+   like the object is behind a pane of glass, not tilting toward you.
+   Used for: CV, Email, LinkedIn, Skills/Certificates tabs.
+   ============================================================ */
+.depth-card {
+    position: relative;
+    width: 150px;
+    min-height: 150px;
+    box-sizing: border-box;
+    padding: 26px 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+
+    background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%);
+    border: 1px solid rgba(196,130,110,0.32);
+    border-radius: 14px;
+    backdrop-filter: blur(6px) saturate(1.25);
+
+    color: #eaf5ff;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.depth-card:hover {
+    border-color: rgba(226,160,140,0.75);
+    box-shadow: 0 0 32px rgba(196,130,110,0.28);
+    transform: translateY(-3px); /* the only movement — a gentle lift, never a tilt */
+}
+
+.depth-card:active {
+    transform: translateY(-1px);
+}
+
+/* Currently-selected Expertise tab stays lit even without hover */
+.depth-card.active {
+    border-color: rgba(226,160,140,0.7);
+    background: linear-gradient(160deg, rgba(226,160,140,0.10) 0%, rgba(255,255,255,0.02) 100%);
+    box-shadow: 0 0 26px rgba(196,130,110,0.22);
+}
+
+/* Compact variant — used for the Expertise Skills/Certificates tabs
+   so they sit as small corner markers instead of dominating the page */
+.depth-card.compact {
+    width: 108px;
+    min-height: 108px;
+    padding: 16px 10px;
+    gap: 8px;
+}
+
+.depth-card.compact .depth-card-icon-wrap {
+    width: 40px;
+    height: 40px;
+}
+
+.depth-card.compact .depth-card-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.depth-card.compact .depth-card-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* The moving light — position driven by JS via --mx/--my custom
+   properties set on mousemove. This is the "shadows and reflections
+   move" effect standing in for rotation entirely. */
+.depth-card-shine {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255,255,255,0.16),
+        transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.depth-card:hover .depth-card-shine {
+    opacity: 1;
+}
+
+/* Circular badge the icon sits inside — matches the reference image */
+.depth-card-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,130,110,0.4);
+    background: rgba(255,255,255,0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.depth-card-icon {
+    width: 24px;
+    height: 24px;
+    color: #eaf5ff;
+}
+
+.depth-card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin: 0;
+    color: #ffffff;
+}
+
+/* Small glowing dot beneath the title — replaces the old underline */
+.depth-card-underline {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(226,160,140,0.9);
+    box-shadow: 0 0 10px rgba(226,160,140,0.9);
+}
+
+
+/* ============================================================
+   ABOUT — content specific to this page only
+   ============================================================ */
+.about-layout {
+    display: grid;
+    grid-template-columns: 160px 1.3fr 1fr;
+    gap: 34px;
+    width: 100%;
+    text-align: left;
+}
+
+.about-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 28px;
+    height: 100%;
+}
+
+.about-sidebar .about-photo-modern {
+    width: 150px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.about-sidebar .primary-btn {
+    width: 100%;
+    margin-right: 0;
+    text-align: center;
+}
+
+.about-layout .about-text-modern p {
+    font-size: 15px;
+    margin: 0 0 14px 0;
+}
+
+.about-layout .about-signature {
+    margin-top: 4px;
+}
+
+.about-side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 220px;
+    width: 100%;
+}
+
+.about-side-panel h3 {
+    margin: 0 0 2px 0;
+    font-size: 18px;
+}
+
+.passion-intro {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.passion-list {
+    list-style: none;
+    margin: 0 0 14px 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.passion-list li {
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    color: #d99a82;
+    box-shadow: 0 0 10px rgba(196,130,110,0.2);
+}
+
+.book-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 0 15px rgba(196,130,110,0.25);
+}
+
+.book-cover {
+    width: 180px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(196,130,110,0.4);
+}
+
+.book-qr {
+    width: 140px;
+    height: auto;
+    image-rendering: crisp-edges;
+    background: #fff;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+/* Motto code card */
+.motto-code {
+    margin-top: 18px;
+    background: rgba(10,13,19,0.7);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    box-shadow: 0 0 15px rgba(196,130,110,0.15);
+}
+
+.motto-code-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(196,130,110,0.08);
+    border-bottom: 1px solid rgba(196,130,110,0.25);
+}
+
+.motto-code-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dot.red    { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green  { background: #27c93f; }
+
+.motto-filename {
+    margin-left: 6px;
+    font-size: 12px;
+    color: #d99a8299;
+}
+
+.motto-code-body {
+    margin: 0;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e3b7a4;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.projects-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 26px;
+    margin-top: 10px;
+}
+
+.project-card {
+    box-sizing: border-box;
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 14px;
+    padding: 24px 22px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(196,130,110,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.project-card-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.project-card-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #d99a82;
+    font-size: 17px;
+    margin: 0;
+}
+
+.project-card-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #d0e4ff;
+    text-align: left;
+    margin: 0;
+}
+
+.project-status {
+    margin-top: auto;
+    padding-top: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #c9b3aa;
+    border-top: 1px solid rgba(196,130,110,0.2);
+    width: 100%;
+}
+
+.project-status-live {
+    color: #9fe6b0;
+}
+
+
+/* ============================================================
+   EXPERTISE — tabbed Skills / Certificates
+   ============================================================ */
+.expertise-intro {
+    max-width: 500px;
+    margin: 8px auto 0;
+    color: #d0e4ff;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Skills card | title+intro | Certificates card, aligned in one row */
+.expertise-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.expertise-header-center {
+    flex: 1;
+    min-width: 0;
+}
+
+.expertise-panel {
+    display: none;
+}
+
+.expertise-panel.active {
+    display: block;
+    animation: panelFadeIn 0.3s ease;
+}
+
+@keyframes panelFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+.skill-category {
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.4);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: left;
+}
+
+.skill-category h3 {
+    color: #d99a82;
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    text-align: center;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-category li {
+    color: #d0e4ff;
+    margin: 6px 0;
+    font-size: 13px;
+}
+
+.skill-bars-box .skills-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.skill-bar { margin: 0; width: 100%; }
+.skill-bar p { margin: 0 0 4px; color: #bcd9ff; font-size: 12px; }
+.bar { width: 100%; height: 7px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+.bar span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: #c4826e;
+    box-shadow: 0 0 8px #c4826e;
+    transition: width 1.2s ease;
+}
+
+.cert-intro {
+    text-align: center;
+    color: #d0e4ff;
+    margin-bottom: 16px;
+}
+
+.cert-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.cert-photo {
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid rgba(196,130,110,0.4);
+    box-shadow: 0 0 15px rgba(196,130,110,0.6);
+}
+
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-primary-card {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 0 20px rgba(196,130,110,0.2);
+    margin-bottom: 30px;
+}
+
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(196,130,110,0.15);
+}
+
+.contact-row:last-of-type {
+    border-bottom: none;
+}
+
+.contact-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    color: #d99a82;
+    letter-spacing: 0.5px;
+}
+
+.contact-value {
+    font-size: 14px;
+    color: #d6e2ff;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 36px;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.contact-actions .primary-btn {
+    margin-right: 0;
+}
+
+.contact-qr-panel {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: 0 0 20px rgba(196,130,110,0.2);
+}
+
+.contact-qr-heading {
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.contact-qr-inner-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.qr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-img {
+    width: 100%;
+    max-width: 120px;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 6px;
+    padding: 4px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qr-img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 18px rgba(196,130,110,0.4);
+}
+
+.qr-label {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #d6e2ff;
+    text-align: center;
+    opacity: 0.85;
+}
+
+@media (max-width: 700px) {
+    .contact-qr-inner-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .about-layout {
+        grid-template-columns: 1fr;
+    }
+    .about-sidebar {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+        height: auto;
+    }
+    .about-sidebar .primary-btn {
+        width: auto;
+    }
+}
