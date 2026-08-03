@@ -499,6 +499,11 @@ p {
     margin-top: 4px;
 }
 
+.book-heading-bottom {
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
 .about-side-panel {
     display: flex;
     flex-direction: column;
