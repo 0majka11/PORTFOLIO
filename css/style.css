@@ -17,6 +17,10 @@ body {
     background: url('../images/background-new.png') center center / cover no-repeat fixed;
 
     height: 100vh;
+    height: 100dvh; /* dynamic viewport height — fixes iOS Safari's 100vh
+                        miscalculation around the address bar; browsers
+                        that don't support dvh simply ignore this line
+                        and keep using 100vh above, so nothing breaks */
     overflow: hidden;
 }
 
@@ -114,6 +118,7 @@ p {
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     perspective: 1600px;
     perspective-origin: 50% 50%;
 }
