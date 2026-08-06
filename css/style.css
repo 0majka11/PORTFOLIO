@@ -924,3 +924,48 @@ p {
         width: auto;
     }
 }
+
+/* ============================================================
+   MOBILE PORTRAIT FIX
+   The carousel panel was hardcoded to 80vw/82vh on every device.
+   On a narrow phone in portrait, that leaves too little width for
+   layouts that assume more room (Projects cards, Expertise skills
+   grid), and since the panel clips overflow rather than scrolling
+   it, that content was getting silently cut off — not just cramped,
+   but genuinely unreachable. This widens the panel and forces the
+   affected grids to a single column, matching the same pattern
+   already used for About's layout above. Scoped to max-width: 600px,
+   so desktop, tablet, and landscape phones are completely unaffected.
+   ============================================================ */
+@media (max-width: 600px) {
+    .carousel-panel {
+        width: 94vw;
+        padding: 18px 16px;
+    }
+
+    .projects-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-qr-inner-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .expertise-header-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .depth-card {
+        width: 130px;
+    }
+
+    .depth-card.compact {
+        width: 96px;
+    }
+}
