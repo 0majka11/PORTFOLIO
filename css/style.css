@@ -923,6 +923,17 @@ p {
     .about-sidebar .primary-btn {
         width: auto;
     }
+
+    /* Arrows were a fixed 52px on every device — far too dominant on
+       tablet and smaller screens. Shrinking here reduces how much
+       screen space they eat without touching desktop at all. */
+    .side-arrow {
+        font-size: 36px;
+    }
+    .arrow-label-left,
+    .arrow-label-right {
+        font-size: 14px;
+    }
 }
 
 /* ============================================================
@@ -967,5 +978,20 @@ p {
 
     .depth-card.compact {
         width: 96px;
+    }
+
+    /* At 94vw, the panel now nearly touches the screen edges — the
+       old arrow position/size would overlap it. Shrink further, pull
+       in closer to the true edge, and hide the page-name label rather
+       than let it show cut off or crowding the panel. The arrow shape
+       alone is still a clear enough "next/previous" indicator. */
+    .side-arrow {
+        font-size: 26px;
+    }
+    #arrow-left-big { left: 8px; }
+    #arrow-right-big { right: 8px; }
+    .arrow-label-left,
+    .arrow-label-right {
+        display: none;
     }
 }
