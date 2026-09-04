@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // IMPORTANT: do NOT block other event listeners
         btn.addEventListener("click", (e) => {
             e.stopPropagation();   // prevents carousel from swallowing the click
-            window.open("files/Andrew_Majka_CV_2026.pdf", "_blank");
+            window.open("files/Andrew_Majka_CV_2026.pdf?v=2", "_blank");
         });
     });
 
