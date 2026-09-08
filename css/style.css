@@ -450,6 +450,10 @@ p {
     box-shadow: 0 0 22px rgba(196,130,110,0.25);
 }
 
+.journey-opening-card .journey-opening + .journey-opening {
+    margin-top: 16px;
+}
+
 .journey-opening {
     margin: 0;
     color: #eaf5ff;
