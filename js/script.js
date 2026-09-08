@@ -136,6 +136,22 @@ render();
     document.addEventListener("keydown", (e) => {
         if (e.key === "ArrowLeft") go(-1);
         if (e.key === "ArrowRight") go(1);
+
+        // Up/Down scroll whichever page is currently on screen — same
+        // active-panel lookup the mouse wheel already uses, just triggered
+        // by the keyboard instead. This is what makes Up/Down behave like
+        // Left/Right: working from anywhere on the page, not only when a
+        // scroll area happens to already have focus.
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            const activePanel = panels[normalizeIndex(currentIndex)];
+            const scrollEl = activePanel && activePanel.querySelector(
+                '.about-scroll, .journey-scroll, .projects-scroll, .expertise-scroll, .contact-scroll'
+            );
+            if (scrollEl) {
+                scrollEl.scrollTop += (e.key === "ArrowDown" ? 80 : -80);
+                e.preventDefault(); // stops the whole browser window from also scrolling
+            }
+        }
     });
 
     /* BUTTON PAGE NAVIGATION (e.g. Home buttons linking to other pages) */
