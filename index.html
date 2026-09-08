@@ -115,7 +115,16 @@
                                 I enjoy the full process of creating a digital product: designing how something looks and feels,
                                 writing the code that makes it work, and maintaining the systems that keep it running.
                                 Problem-solving through programming is what genuinely draws me in — breaking a challenge down
-                                and building a working solution from it, one piece at a time.
+                                and building a working solution from it, one piece at a time. The visual side of this site has
+                                been recognised by my tutor for its quality, which matters to me as much as whether the code
+                                behind it actually works.
+                            </p>
+
+                            <p>
+                                I'm equally comfortable turning ideas into visuals — presentations, social media content, and
+                                advertising concepts are areas I enjoy and want to keep developing alongside my technical
+                                skills. I also make practical use of AI tools in my work: understanding how they function, and
+                                applying them thoughtfully to speed up problem-solving rather than just to generate answers.
                             </p>
 
                             <p>
@@ -135,6 +144,44 @@
                             <p class="about-signature">
                                 ANDRZEJ JERZY MAJKA
                             </p>
+
+                            <h3 class="book-heading-bottom">Build Notes</h3>
+                            <p class="build-notes-intro">A few real problems from building this site — what broke, and how I found out why.</p>
+
+                            <div class="build-note">
+                                <h4>Fixing a navigation bug that only showed up after several clicks</h4>
+                                <p>
+                                    My page carousel is meant to move exactly one step at a time, left or right. Instead, pressing back from
+                                    the first page sent it sweeping visually through every other page before landing on the last one — like
+                                    flicking through a whole deck of cards instead of turning just one. The bug wasn't obvious from reading the
+                                    code; it only appeared after enough navigation, which is what made it worth tracking down properly. The
+                                    cause turned out to be one line resetting the page counter too early, which meant the animation lost track
+                                    of which direction I'd actually pressed. Fixing it meant understanding not just what the code did, but what
+                                    it was assuming.
+                                </p>
+                            </div>
+
+                            <div class="build-note">
+                                <h4>Finding an accessibility bug I didn't know I had</h4>
+                                <p>
+                                    Everything on this site looked fine to me — but "looks fine" and "actually works for everyone" aren't the
+                                    same thing. Running an automated accessibility check flagged something I'd never have caught by eye: two
+                                    scrollable sections of the site were completely unreachable by keyboard alone. Someone who can't use a mouse
+                                    — which includes many screen-reader users — would hit a dead end there. It's a one-line fix once you know
+                                    about it, but the real lesson was realising how much "it works for me" can hide.
+                                </p>
+                            </div>
+
+                            <div class="build-note">
+                                <h4>When the fix doesn't fix it (yet)</h4>
+                                <p>
+                                    Not every bug is what it first looks like. My CV stopped updating on this site, and my first assumption —
+                                    browser caching — was reasonable, and I fixed it properly. It still didn't work. Turned out the actual file
+                                    had been renamed at some point, and the code was quietly pointing at a file that no longer existed. Two
+                                    different problems, wearing the same symptom. Ruling things out one at a time, rather than guessing, is what
+                                    actually got me to the real cause.
+                                </p>
+                            </div>
 
                             <h3 class="book-heading-bottom">My Book</h3>
 
@@ -285,6 +332,9 @@
                                 <h3>Creative Skills</h3>
                                 <ul>
                                     <li>UI/UX Design</li>
+                                    <li>Presentation Design</li>
+                                    <li>Social Media Content</li>
+                                    <li>Advertising & Marketing Concepts</li>
                                     <li>Page Layout & Typography</li>
                                     <li>Poetry & Creative Writing</li>
                                     <li>Digital Storytelling</li>
@@ -314,6 +364,7 @@
                                     <li>Data Analysis</li>
                                     <li>Web Prototype → Mobile App Conversion (learning)</li>
                                     <li>Domain Setup & Website Hosting</li>
+                                    <li>Practical AI Tool Use in Development</li>
                                 </ul>
                             </div>
 

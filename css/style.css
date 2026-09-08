@@ -17,10 +17,7 @@ body {
     background: url('../images/background-new.png') center center / cover no-repeat fixed;
 
     height: 100vh;
-    height: 100dvh; /* dynamic viewport height — fixes iOS Safari's 100vh
-                        miscalculation around the address bar; browsers
-                        that don't support dvh simply ignore this line
-                        and keep using 100vh above, so nothing breaks */
+    height: 100dvh;
     overflow: hidden;
 }
 
@@ -35,9 +32,6 @@ p {
     line-height: 1.5;
 }
 
-/* ------------------------------------------------------------
-   BUTTONS (non-cube, e.g. legacy usage)
------------------------------------------------------------- */
 .primary-btn, .secondary-btn {
     padding: 12px 20px;
     font-family: 'Orbitron', sans-serif;
@@ -66,9 +60,6 @@ p {
     margin-top: 10px;
 }
 
-/* ------------------------------------------------------------
-   SIDE ARROWS — copper accent
------------------------------------------------------------- */
 .side-arrow {
     position: fixed;
     top: 50%;
@@ -110,10 +101,6 @@ p {
     text-shadow: 0 0 16px rgba(226,160,140,0.9);
 }
 
-
-/* ============================================================
-   3D DEPTH CAROUSEL — the core navigation system
-   ============================================================ */
 #carousel-stage {
     position: relative;
     width: 100vw;
@@ -130,7 +117,6 @@ p {
     transform-style: preserve-3d;
 }
 
-/* The glass panel itself — one shared look for all 5 pages */
 .carousel-panel {
     position: absolute;
     top: 50%;
@@ -182,7 +168,6 @@ p {
     margin: 0 0 20px 0;
 }
 
-/* Only the scrollable body inside each panel grows/scrolls */
 .about-scroll,
 .projects-scroll,
 .expertise-scroll,
@@ -191,8 +176,8 @@ p {
     min-height: 0;
     width: 100%;
     overflow-y: auto;
-    touch-action: pan-y;              /* tells the browser: vertical drag here is scroll, not page-swipe */
-    -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS Safari */
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
 }
 
 .about-scroll::-webkit-scrollbar,
@@ -210,10 +195,6 @@ p {
 .expertise-scroll::-webkit-scrollbar-thumb,
 .contact-scroll::-webkit-scrollbar-thumb { background: rgba(196,130,110,0.5); border-radius: 4px; }
 
-
-/* ============================================================
-   HOME — sits inside a panel like every other page now
-   ============================================================ */
 .home-panel-inner {
     width: 100%;
     height: 100%;
@@ -224,9 +205,6 @@ p {
     gap: 24px;
 }
 
-/* Home gets far more transparent glass than other pages — the
-   background art is the point here, the panel should barely
-   tint it, not hide it. */
 #home.carousel-panel {
     background: linear-gradient(155deg,
         rgba(190,155,135,0.02) 0%,
@@ -328,14 +306,6 @@ p {
     50% { opacity: 0.55; }
 }
 
-
-/* ============================================================
-   PHYSICAL DEPTH CARDS
-   Flat glass cards — never rotate. Depth is created by a cursor-
-   driven light/shadow that moves across the surface instead,
-   like the object is behind a pane of glass, not tilting toward you.
-   Used for: CV, Email, LinkedIn, Skills/Certificates tabs.
-   ============================================================ */
 .depth-card {
     position: relative;
     width: 150px;
@@ -366,22 +336,19 @@ p {
 .depth-card:hover {
     border-color: rgba(226,160,140,0.75);
     box-shadow: 0 0 32px rgba(196,130,110,0.28);
-    transform: translateY(-3px); /* the only movement — a gentle lift, never a tilt */
+    transform: translateY(-3px);
 }
 
 .depth-card:active {
     transform: translateY(-1px);
 }
 
-/* Currently-selected Expertise tab stays lit even without hover */
 .depth-card.active {
     border-color: rgba(226,160,140,0.7);
     background: linear-gradient(160deg, rgba(226,160,140,0.10) 0%, rgba(255,255,255,0.02) 100%);
     box-shadow: 0 0 26px rgba(196,130,110,0.22);
 }
 
-/* Compact variant — used for the Expertise Skills/Certificates tabs
-   so they sit as small corner markers instead of dominating the page */
 .depth-card.compact {
     width: 108px;
     min-height: 108px;
@@ -404,9 +371,6 @@ p {
     letter-spacing: 1px;
 }
 
-/* The moving light — position driven by JS via --mx/--my custom
-   properties set on mousemove. This is the "shadows and reflections
-   move" effect standing in for rotation entirely. */
 .depth-card-shine {
     position: absolute;
     inset: 0;
@@ -424,7 +388,6 @@ p {
     opacity: 1;
 }
 
-/* Circular badge the icon sits inside — matches the reference image */
 .depth-card-icon-wrap {
     width: 52px;
     height: 52px;
@@ -452,7 +415,6 @@ p {
     color: #ffffff;
 }
 
-/* Small glowing dot beneath the title — replaces the old underline */
 .depth-card-underline {
     width: 6px;
     height: 6px;
@@ -461,10 +423,6 @@ p {
     box-shadow: 0 0 10px rgba(226,160,140,0.9);
 }
 
-
-/* ============================================================
-   ABOUT — content specific to this page only
-   ============================================================ */
 .about-layout {
     display: grid;
     grid-template-columns: 160px 1.3fr 1fr;
@@ -507,6 +465,39 @@ p {
 .book-heading-bottom {
     margin-top: 24px;
     margin-bottom: 12px;
+}
+
+/* ============================================================
+   BUILD NOTES
+   Short, honest write-ups of real problems solved while building
+   this site — proof of process, not just a polished result.
+   ============================================================ */
+.build-notes-intro {
+    font-size: 13px;
+    font-style: italic;
+    color: #b8a49c;
+    margin: 0 0 16px 0;
+}
+
+.build-note {
+    border-left: 2px solid rgba(196,130,110,0.4);
+    padding-left: 16px;
+    margin-bottom: 20px;
+}
+
+.build-note h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    color: #d99a82;
+    text-shadow: none;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.build-note p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
 }
 
 .about-side-panel {
@@ -577,7 +568,6 @@ p {
     border-radius: 6px;
 }
 
-/* Motto code card */
 .motto-code {
     margin-top: 18px;
     background: rgba(10,13,19,0.7);
@@ -623,10 +613,6 @@ p {
     overflow-x: auto;
 }
 
-
-/* ============================================================
-   PROJECTS
-   ============================================================ */
 .projects-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -684,10 +670,6 @@ p {
     color: #9fe6b0;
 }
 
-
-/* ============================================================
-   EXPERTISE — tabbed Skills / Certificates
-   ============================================================ */
 .expertise-intro {
     max-width: 500px;
     margin: 8px auto 0;
@@ -697,7 +679,6 @@ p {
     text-align: center;
 }
 
-/* Skills card | title+intro | Certificates card, aligned in one row */
 .expertise-header-row {
     display: flex;
     align-items: flex-start;
@@ -798,10 +779,6 @@ p {
     box-shadow: 0 0 15px rgba(196,130,110,0.6);
 }
 
-
-/* ============================================================
-   CONTACT
-   ============================================================ */
 .contact-scroll {
     display: flex;
     flex-direction: column;
@@ -924,9 +901,6 @@ p {
         width: auto;
     }
 
-    /* Arrows were a fixed 52px on every device — far too dominant on
-       tablet and smaller screens. Shrinking here reduces how much
-       screen space they eat without touching desktop at all. */
     .side-arrow {
         font-size: 36px;
     }
@@ -936,18 +910,6 @@ p {
     }
 }
 
-/* ============================================================
-   MOBILE PORTRAIT FIX
-   The carousel panel was hardcoded to 80vw/82vh on every device.
-   On a narrow phone in portrait, that leaves too little width for
-   layouts that assume more room (Projects cards, Expertise skills
-   grid), and since the panel clips overflow rather than scrolling
-   it, that content was getting silently cut off — not just cramped,
-   but genuinely unreachable. This widens the panel and forces the
-   affected grids to a single column, matching the same pattern
-   already used for About's layout above. Scoped to max-width: 600px,
-   so desktop, tablet, and landscape phones are completely unaffected.
-   ============================================================ */
 @media (max-width: 600px) {
     .carousel-panel {
         width: 94vw;
@@ -980,11 +942,6 @@ p {
         width: 96px;
     }
 
-    /* At 94vw, the panel now nearly touches the screen edges — the
-       old arrow position/size would overlap it. Shrink further, pull
-       in closer to the true edge, and hide the page-name label rather
-       than let it show cut off or crowding the panel. The arrow shape
-       alone is still a clear enough "next/previous" indicator. */
     .side-arrow {
         font-size: 26px;
     }
