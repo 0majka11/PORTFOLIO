@@ -79,6 +79,18 @@ p {
     text-shadow: 0 0 25px rgba(226,160,140,0.9);
 }
 
+/* Keyboard focus only (:focus-visible skips this for mouse/touch clicks,
+   so it never shows up unless someone is actually tabbing through) —
+   a copper glow matching the theme instead of the browser's default
+   blue outline, which would clash and look unintentional. */
+.side-arrow:focus-visible {
+    outline: none;
+    color: rgba(226,160,140,0.95);
+    text-shadow: 0 0 25px rgba(226,160,140,0.9);
+    box-shadow: 0 0 0 3px rgba(226,160,140,0.6);
+    border-radius: 8px;
+}
+
 #arrow-left-big { left: 20px; }
 #arrow-right-big { right: 20px; }
 

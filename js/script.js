@@ -117,6 +117,27 @@ render();
     arrowLeftBig.addEventListener("click", () => go(-1));
     arrowRightBig.addEventListener("click", () => go(1));
 
+    /* KEYBOARD NAVIGATION
+       Enter/Space activate whichever arrow is currently focused (this is
+       what a real <button> gets for free — since these are divs with
+       role="button", it has to be added manually to behave the same way).
+       Left/Right arrow keys work globally, anywhere on the page, matching
+       the on-screen left/right metaphor directly — no need to Tab to the
+       arrow first. */
+    [arrowLeftBig, arrowRightBig].forEach((arrowEl, i) => {
+        arrowEl.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault(); // stops Space from also scrolling the page
+                go(i === 0 ? -1 : 1);
+            }
+        });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") go(-1);
+        if (e.key === "ArrowRight") go(1);
+    });
+
     /* BUTTON PAGE NAVIGATION (e.g. Home buttons linking to other pages) */
     const btnExpertise = document.querySelector("button[onclick*='#expertise']");
     const btnProjects = document.querySelector("button[onclick*='#projects']");
