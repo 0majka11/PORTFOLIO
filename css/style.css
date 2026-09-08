@@ -440,6 +440,16 @@ p {
     text-align: center;
 }
 
+.journey-opening {
+    max-width: 620px;
+    margin: 14px auto 0;
+    color: #eaf5ff;
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: center;
+    font-style: italic;
+}
+
 .journey-timeline {
     position: relative;
     max-width: 720px;
