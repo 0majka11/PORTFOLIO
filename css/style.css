@@ -162,7 +162,8 @@ p {
 .carousel-panel > h2,
 .carousel-panel > .projects-header,
 .carousel-panel > .expertise-header,
-.carousel-panel > .contact-header {
+.carousel-panel > .contact-header,
+.carousel-panel > .journey-header {
     flex-shrink: 0;
     text-align: center;
     margin: 0 0 20px 0;
@@ -171,7 +172,8 @@ p {
 .about-scroll,
 .projects-scroll,
 .expertise-scroll,
-.contact-scroll {
+.contact-scroll,
+.journey-scroll {
     flex: 1;
     min-height: 0;
     width: 100%;
@@ -183,17 +185,20 @@ p {
 .about-scroll::-webkit-scrollbar,
 .projects-scroll::-webkit-scrollbar,
 .expertise-scroll::-webkit-scrollbar,
-.contact-scroll::-webkit-scrollbar { width: 8px; }
+.contact-scroll::-webkit-scrollbar,
+.journey-scroll::-webkit-scrollbar { width: 8px; }
 
 .about-scroll::-webkit-scrollbar-track,
 .projects-scroll::-webkit-scrollbar-track,
 .expertise-scroll::-webkit-scrollbar-track,
-.contact-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
+.contact-scroll::-webkit-scrollbar-track,
+.journey-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
 
 .about-scroll::-webkit-scrollbar-thumb,
 .projects-scroll::-webkit-scrollbar-thumb,
 .expertise-scroll::-webkit-scrollbar-thumb,
-.contact-scroll::-webkit-scrollbar-thumb { background: rgba(196,130,110,0.5); border-radius: 4px; }
+.contact-scroll::-webkit-scrollbar-thumb,
+.journey-scroll::-webkit-scrollbar-thumb { background: rgba(196,130,110,0.5); border-radius: 4px; }
 
 .home-panel-inner {
     width: 100%;
@@ -421,6 +426,101 @@ p {
     border-radius: 50%;
     background: rgba(226,160,140,0.9);
     box-shadow: 0 0 10px rgba(226,160,140,0.9);
+}
+
+/* ============================================================
+   JOURNEY — vertical timeline with a glowing connecting line
+   ============================================================ */
+.journey-intro {
+    max-width: 550px;
+    margin: 8px auto 0;
+    color: #d0e4ff;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.journey-timeline {
+    position: relative;
+    max-width: 720px;
+    margin: 10px auto 0;
+    padding-left: 28px;
+}
+
+.journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg,
+        rgba(196,130,110,0.15) 0%,
+        rgba(196,130,110,0.6) 15%,
+        rgba(196,130,110,0.6) 85%,
+        rgba(226,160,140,0.9) 100%);
+    box-shadow: 0 0 8px rgba(196,130,110,0.4);
+}
+
+.journey-stage {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.journey-stage:last-child {
+    margin-bottom: 0;
+}
+
+.journey-node {
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(10,13,19,1);
+    border: 2px solid rgba(196,130,110,0.7);
+    box-shadow: 0 0 8px rgba(196,130,110,0.5);
+}
+
+.journey-stage-current .journey-node {
+    background: rgba(226,160,140,1);
+    border-color: rgba(226,160,140,1);
+    box-shadow: 0 0 16px rgba(226,160,140,0.9);
+}
+
+.journey-stage-content {
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 0 15px rgba(196,130,110,0.15);
+}
+
+.journey-stage-current .journey-stage-content {
+    border-color: rgba(226,160,140,0.7);
+    box-shadow: 0 0 22px rgba(226,160,140,0.3);
+}
+
+.journey-years {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #d99a82;
+    margin-bottom: 6px;
+}
+
+.journey-stage-content h3 {
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    text-shadow: none;
+}
+
+.journey-stage-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
 }
 
 .about-layout {

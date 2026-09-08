@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const sections = ["home", "about", "projects", "expertise", "contact"];
+    const sections = ["home", "about", "journey", "projects", "expertise", "contact"];
 
     const stage = document.getElementById("carousel-stage");
     const panels = Array.from(document.querySelectorAll(".carousel-panel"));
@@ -217,7 +217,7 @@ console.log("SCRIPT.JS LOADED");
        ============================================================ */
 
     stage.addEventListener('mousedown', (e) => {
-    if (e.target.closest('.about-scroll, .projects-scroll, .expertise-scroll, .contact-scroll')) {
+    if (e.target.closest('.about-scroll, .journey-scroll, .projects-scroll, .expertise-scroll, .contact-scroll')) {
         return;
     }
     dragStartX = e.clientX;
@@ -250,7 +250,7 @@ console.log("SCRIPT.JS LOADED");
         const activePanel = panels[normalizeIndex(currentIndex)];
         if (!activePanel) return;
         const scrollEl = activePanel.querySelector(
-            '.about-scroll, .projects-scroll, .expertise-scroll, .contact-scroll'
+            '.about-scroll, .journey-scroll, .projects-scroll, .expertise-scroll, .contact-scroll'
         );
         if (scrollEl) {
             scrollEl.scrollTop += e.deltaY;
