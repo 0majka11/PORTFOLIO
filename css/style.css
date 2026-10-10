@@ -28,7 +28,7 @@ h1, h2, h3 {
 }
 
 p {
-    color: #bcd9ff;
+    color: #e8f1ff;
     line-height: 1.5;
 }
 
@@ -99,7 +99,7 @@ p {
     font-family: 'Orbitron', sans-serif;
     font-size: 18px;
     font-weight: 600;
-    color: #d99a82;
+    color: #f0b8a0;
     text-shadow: 0 0 12px rgba(196,130,110,0.6);
     margin: 0 10px;
     opacity: 1;
@@ -146,15 +146,15 @@ p {
 
     border-radius: 22px;
     background: linear-gradient(155deg,
-        rgba(190,155,135,0.10) 0%,
-        rgba(60,48,44,0.26) 55%,
-        rgba(14,12,11,0.34) 100%);
+        rgba(60,48,44,0.58) 0%,
+        rgba(28,22,20,0.74) 55%,
+        rgba(10,8,8,0.82) 100%);
     border: 1px solid rgba(196,130,110,0.4);
     box-shadow:
         inset 0 1px 1px rgba(255,255,255,0.18),
         inset 0 -30px 50px rgba(0,0,0,0.3),
         0 0 45px rgba(196,130,110,0.15);
-    backdrop-filter: blur(4px) saturate(1.3);
+    backdrop-filter: blur(10px) saturate(1.2);
 
     will-change: transform, filter, opacity;
     backface-visibility: hidden;
@@ -446,7 +446,7 @@ p {
 .journey-intro {
     max-width: 550px;
     margin: 8px auto 0;
-    color: #d0e4ff;
+    color: #f2f7ff;
     font-size: 14px;
     line-height: 1.5;
     text-align: center;
@@ -542,7 +542,7 @@ p {
     font-family: 'Orbitron', sans-serif;
     font-size: 11px;
     letter-spacing: 1px;
-    color: #d99a82;
+    color: #f0b8a0;
     margin-bottom: 6px;
 }
 
@@ -623,7 +623,7 @@ p {
 .build-note h4 {
     font-family: 'Orbitron', sans-serif;
     font-size: 14px;
-    color: #d99a82;
+    color: #f0b8a0;
     text-shadow: none;
     margin: 0 0 8px 0;
     line-height: 1.4;
@@ -670,7 +670,7 @@ p {
     padding: 8px 12px;
     font-family: 'Orbitron', sans-serif;
     font-size: 13px;
-    color: #d99a82;
+    color: #f0b8a0;
     box-shadow: 0 0 10px rgba(196,130,110,0.2);
 }
 
@@ -735,7 +735,7 @@ p {
 .motto-filename {
     margin-left: 6px;
     font-size: 12px;
-    color: #d99a8299;
+    color: #f0b8a099;
 }
 
 .motto-code-body {
@@ -743,7 +743,7 @@ p {
     padding: 14px 16px;
     font-size: 13px;
     line-height: 1.6;
-    color: #e3b7a4;
+    color: #f5d2c3;
     white-space: pre;
     overflow-x: auto;
 }
@@ -777,7 +777,7 @@ p {
 
 .project-card-title {
     font-family: 'Orbitron', sans-serif;
-    color: #d99a82;
+    color: #f0b8a0;
     font-size: 17px;
     margin: 0;
 }
@@ -785,7 +785,7 @@ p {
 .project-card-desc {
     font-size: 13px;
     line-height: 1.6;
-    color: #d0e4ff;
+    color: #f2f7ff;
     text-align: left;
     margin: 0;
 }
@@ -796,7 +796,7 @@ p {
     font-family: 'Orbitron', sans-serif;
     font-size: 11px;
     letter-spacing: 1.5px;
-    color: #c9b3aa;
+    color: #ead8d0;
     border-top: 1px solid rgba(196,130,110,0.2);
     width: 100%;
 }
@@ -808,7 +808,7 @@ p {
 .expertise-intro {
     max-width: 500px;
     margin: 8px auto 0;
-    color: #d0e4ff;
+    color: #f2f7ff;
     font-size: 14px;
     line-height: 1.5;
     text-align: center;
@@ -857,7 +857,7 @@ p {
 }
 
 .skill-category h3 {
-    color: #d99a82;
+    color: #f0b8a0;
     margin: 0 0 10px 0;
     font-size: 15px;
     text-align: center;
@@ -870,7 +870,7 @@ p {
 }
 
 .skill-category li {
-    color: #d0e4ff;
+    color: #f2f7ff;
     margin: 6px 0;
     font-size: 13px;
 }
@@ -882,7 +882,7 @@ p {
 }
 
 .skill-bar { margin: 0; width: 100%; }
-.skill-bar p { margin: 0 0 4px; color: #bcd9ff; font-size: 12px; }
+.skill-bar p { margin: 0 0 4px; color: #e8f1ff; font-size: 12px; }
 .bar { width: 100%; height: 7px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
 .bar span {
     display: block;
@@ -895,7 +895,7 @@ p {
 
 .cert-intro {
     text-align: center;
-    color: #d0e4ff;
+    color: #f2f7ff;
     margin-bottom: 16px;
 }
 
@@ -945,7 +945,7 @@ p {
 .contact-label {
     font-family: 'Orbitron', sans-serif;
     font-size: 13px;
-    color: #d99a82;
+    color: #f0b8a0;
     letter-spacing: 0.5px;
 }
 
@@ -1059,7 +1059,7 @@ p {
 .projects-header-center .projects-intro-modern {
     max-width: 500px;
     margin: 8px auto 0;
-    color: #d0e4ff;
+    color: #f2f7ff;
     font-size: 14px;
     line-height: 1.5;
 }
@@ -1068,7 +1068,7 @@ p {
 
 .projects-subheading {
     font-family: 'Orbitron', sans-serif;
-    color: #d99a82;
+    color: #f0b8a0;
     font-size: 14px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -1096,9 +1096,9 @@ p {
 }
 .studio-link-img { width: 100%; display: block; aspect-ratio: 1911 / 872; object-fit: cover; }
 .studio-link-body { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 20px 22px; text-align: center; }
-.studio-link-label { font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 3px; color: #d99a82; }
+.studio-link-label { font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 3px; color: #f0b8a0; }
 .studio-link-title { font-family: 'Orbitron', sans-serif; font-size: 22px; color: #FFD65C; }
-.studio-link-text { font-size: 14px; color: #d0e4ff; line-height: 1.5; }
+.studio-link-text { font-size: 14px; color: #f2f7ff; line-height: 1.5; }
 .studio-link-cta { margin-top: 10px; border: 1px solid rgba(255,214,92,0.6); border-radius: 10px; padding: 10px 22px; background: rgba(255,214,92,0.08); font-family: 'Orbitron', sans-serif; font-size: 12px; letter-spacing: 2px; color: #FFD65C; }
 
 .app-gallery {
@@ -1121,20 +1121,20 @@ p {
 }
 .app-card-icon { width: 84px; height: 84px; border-radius: 18px; object-fit: cover; }
 .app-card-title { font-family: 'Orbitron', sans-serif; color: #FFD65C; font-size: 17px; margin: 0; }
-.app-card-desc { font-size: 13px; line-height: 1.6; color: #d0e4ff; margin: 0; }
+.app-card-desc { font-size: 13px; line-height: 1.6; color: #f2f7ff; margin: 0; }
 .app-card-stores { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
 .app-store { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .app-qr { width: 104px; height: 104px; background: #fff; padding: 6px; border-radius: 8px; box-sizing: border-box; }
 .app-store-btn {
     font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 1.5px;
-    color: #d99a82; text-decoration: none;
+    color: #f0b8a0; text-decoration: none;
     border: 1px solid rgba(196,130,110,0.5); border-radius: 8px; padding: 6px 12px;
 }
 .app-store-btn:hover { color: #FFD65C; border-color: #FFD65C; }
 .app-card-shot { width: 100%; max-width: 190px; border-radius: 18px; border: 1px solid rgba(196,130,110,0.4); box-shadow: 0 0 22px rgba(196,130,110,0.3); display: block; }
-.app-card-note { font-size: 12px; color: #c9b3aa; margin: 0; }
+.app-card-note { font-size: 12px; color: #ead8d0; margin: 0; }
 .app-card-soon { border-style: dashed; opacity: .9; }
-.app-card-badge { font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 3px; color: #d99a82; border: 1px solid rgba(196,130,110,0.5); border-radius: 20px; padding: 5px 14px; }
+.app-card-badge { font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 3px; color: #f0b8a0; border: 1px solid rgba(196,130,110,0.5); border-radius: 20px; padding: 5px 14px; }
 
 .inline-link { color: #FFD65C; text-decoration: none; border-bottom: 1px solid rgba(255,214,92,0.5); }
 .inline-link:hover { border-bottom-color: #FFD65C; }
