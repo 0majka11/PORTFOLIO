@@ -490,10 +490,10 @@ p {
     bottom: 6px;
     width: 2px;
     background: linear-gradient(180deg,
-        rgba(196,130,110,0.15) 0%,
+        rgba(226,160,140,0.9) 0%,
         rgba(196,130,110,0.6) 15%,
         rgba(196,130,110,0.6) 85%,
-        rgba(226,160,140,0.9) 100%);
+        rgba(196,130,110,0.15) 100%);
     box-shadow: 0 0 8px rgba(196,130,110,0.4);
 }
 
@@ -1182,3 +1182,6 @@ p {
         display: none;
     }
 }
+
+.project-card-link { text-decoration: none; transition: transform .25s ease, box-shadow .25s ease; }
+.project-card-link:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(255,214,92,0.3); }

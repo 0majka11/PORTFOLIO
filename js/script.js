@@ -76,14 +76,16 @@ function render() {
 
 render();
     
+    function labelFor(id) { return id === "projects" ? "development" : id; }
+
     function updateArrowLabels() {
         const idx = normalizeIndex(currentIndex);
         let prev = idx - 1;
         if (prev < 0) prev = sections.length - 1;
         let next = idx + 1;
         if (next >= sections.length) next = 0;
-        leftLabel.textContent = sections[prev];
-        rightLabel.textContent = sections[next];
+        leftLabel.textContent = labelFor(sections[prev]);
+        rightLabel.textContent = labelFor(sections[next]);
     }
 
     function afterNavigate() {
