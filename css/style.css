@@ -1045,6 +1045,100 @@ p {
     }
 }
 
+/* ============================================================
+   PROJECTS — tabbed page (My Work / Prototype)
+   ============================================================ */
+.projects-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+.projects-header-center { flex: 1; min-width: 0; }
+.projects-header-center .projects-intro-modern {
+    max-width: 500px;
+    margin: 8px auto 0;
+    color: #d0e4ff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.projects-panel { display: none; }
+.projects-panel.active { display: block; }
+
+.projects-subheading {
+    font-family: 'Orbitron', sans-serif;
+    color: #d99a82;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 34px 0 16px;
+}
+
+.studio-link-card {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 760px;
+    margin: 10px auto 0;
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.45);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 0 24px rgba(196,130,110,0.25);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+.studio-link-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 34px rgba(255,214,92,0.35);
+}
+.studio-link-img { width: 100%; display: block; aspect-ratio: 1911 / 872; object-fit: cover; }
+.studio-link-body { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 20px 22px; text-align: center; }
+.studio-link-label { font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 3px; color: #d99a82; }
+.studio-link-title { font-family: 'Orbitron', sans-serif; font-size: 22px; color: #FFD65C; }
+.studio-link-text { font-size: 14px; color: #d0e4ff; line-height: 1.5; }
+.studio-link-cta { margin-top: 10px; border: 1px solid rgba(255,214,92,0.6); border-radius: 10px; padding: 10px 22px; background: rgba(255,214,92,0.08); font-family: 'Orbitron', sans-serif; font-size: 12px; letter-spacing: 2px; color: #FFD65C; }
+
+.app-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+}
+.app-card {
+    box-sizing: border-box;
+    background: rgba(10, 13, 19, 0.55);
+    border: 1px solid rgba(196,130,110,0.35);
+    border-radius: 14px;
+    padding: 24px 22px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(196,130,110,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.app-card-icon { width: 84px; height: 84px; border-radius: 18px; object-fit: cover; }
+.app-card-title { font-family: 'Orbitron', sans-serif; color: #FFD65C; font-size: 17px; margin: 0; }
+.app-card-desc { font-size: 13px; line-height: 1.6; color: #d0e4ff; margin: 0; }
+.app-card-stores { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+.app-store { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.app-qr { width: 104px; height: 104px; background: #fff; padding: 6px; border-radius: 8px; box-sizing: border-box; }
+.app-store-btn {
+    font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 1.5px;
+    color: #d99a82; text-decoration: none;
+    border: 1px solid rgba(196,130,110,0.5); border-radius: 8px; padding: 6px 12px;
+}
+.app-store-btn:hover { color: #FFD65C; border-color: #FFD65C; }
+.app-card-shot { width: 100%; max-width: 190px; border-radius: 18px; border: 1px solid rgba(196,130,110,0.4); box-shadow: 0 0 22px rgba(196,130,110,0.3); display: block; }
+.app-card-note { font-size: 12px; color: #c9b3aa; margin: 0; }
+.app-card-soon { border-style: dashed; opacity: .9; }
+.app-card-badge { font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 3px; color: #d99a82; border: 1px solid rgba(196,130,110,0.5); border-radius: 20px; padding: 5px 14px; }
+
+.inline-link { color: #FFD65C; text-decoration: none; border-bottom: 1px solid rgba(255,214,92,0.5); }
+.inline-link:hover { border-bottom-color: #FFD65C; }
+
 @media (max-width: 600px) {
     .carousel-panel {
         width: 94vw;
@@ -1063,7 +1157,8 @@ p {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .expertise-header-row {
+    .expertise-header-row,
+    .projects-header-row {
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px;

@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 // sections.length, so navigation always moves exactly
                                 // one step in the direction pressed, never the long way
     let floatIndex = 0;
+    let dragStartX = null;
 
     const EASE = 0.035; // lower = slower, more "liquid" motion
 
@@ -170,6 +171,19 @@ render();
             tab.classList.add("active");
             document.querySelectorAll(".expertise-panel").forEach(p => p.classList.remove("active"));
             document.getElementById(`panel-${tab.dataset.tab}`).classList.add("active");
+        });
+    });
+
+    /* PROJECTS TABS — My Work / Prototype toggle (separate from Expertise) */
+    const projectsTabs = document.querySelectorAll(".projects-tab");
+    projectsTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            projectsTabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            document.querySelectorAll(".projects-panel").forEach(p => p.classList.remove("active"));
+            document.getElementById(`proj-panel-${tab.dataset.tab}`).classList.add("active");
+            const sc = tab.closest(".carousel-panel").querySelector(".projects-scroll");
+            if (sc) sc.scrollTop = 0;
         });
     });
 
