@@ -1185,3 +1185,18 @@ p {
 
 .project-card-link { text-decoration: none; transition: transform .25s ease, box-shadow .25s ease; }
 .project-card-link:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(255,214,92,0.3); }
+
+.about-side-panel .book-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+.about-side-panel .book-cover { width: 100%; max-width: 170px; }
+.about-side-panel .book-qr { width: 120px; }
+.book-genre {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #f0b8a0;
+}
