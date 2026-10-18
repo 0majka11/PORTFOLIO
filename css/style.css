@@ -1248,7 +1248,7 @@ p {
     position: absolute;
     left: 0; right: 0; top: 0;
     bottom: 205px;
-    background: url('../images/Neon-me.png') center / cover no-repeat;
+    background: url('../images/Neon-me.png?v=2') center / cover no-repeat;
     opacity: 0.5;
     border-radius: 14px;
     pointer-events: none;
