@@ -1201,16 +1201,60 @@ p {
     color: #f0b8a0;
 }
 
-/* Half-size depth cards (About sidebar) */
-.depth-card.mini {
-    width: 75px;
-    min-height: 75px;
-    padding: 8px 4px;
-    gap: 4px;
-    border-radius: 10px;
+/* CV button: same width as the photo, 40% lower than the other cards */
+.depth-card.cv-short {
+    min-height: 90px;
+    height: 90px;
+    padding: 8px 12px;
+    gap: 6px;
 }
-.depth-card.mini .depth-card-icon-wrap { width: 26px; height: 26px; }
-.depth-card.mini .depth-card-icon { width: 12px; height: 12px; }
-.depth-card.mini .depth-card-title { font-size: 8px; letter-spacing: 0.5px; }
-.depth-card.mini .depth-card-underline { width: 4px; height: 4px; }
+.depth-card.cv-short .depth-card-icon-wrap { width: 34px; height: 34px; }
+.depth-card.cv-short .depth-card-icon { width: 16px; height: 16px; }
 .about-sidebar { gap: 14px; }
+
+/* ============================================================
+   CONTACT — neon photo background, details in the corner,
+   three buttons in one row, QR codes right below
+   ============================================================ */
+.contact-bg {
+    position: absolute;
+    inset: 0;
+    background: url('../images/Neon-me.png') center / cover no-repeat;
+    opacity: 0.38;
+    filter: saturate(0.7);
+    pointer-events: none;
+    z-index: 0;
+}
+.carousel-panel[data-page="contact"] > .contact-header,
+.carousel-panel[data-page="contact"] > .contact-scroll {
+    position: relative;
+    z-index: 1;
+}
+.carousel-panel > .contact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+}
+.contact-header h2 { margin: 0; text-align: right; }
+.contact-details { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.contact-detail { display: flex; gap: 14px; align-items: baseline; }
+.contact-detail .contact-label {
+    width: 78px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.contact-detail .contact-value { font-size: 15px; color: #f2f7ff; }
+.contact-actions { flex-wrap: wrap; gap: 28px; margin-top: 30px; }
+.contact-qr-panel {
+    max-width: 760px;
+    margin: 34px auto 0;
+    background: rgba(10, 13, 19, 0.35);
+}
+@media (max-width: 700px) {
+    .carousel-panel > .contact-header { flex-direction: column-reverse; align-items: center; gap: 12px; }
+    .contact-header h2 { text-align: center; }
+    .contact-details { align-items: flex-start; }
+}
