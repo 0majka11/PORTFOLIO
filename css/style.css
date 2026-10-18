@@ -1233,27 +1233,34 @@ p {
 
 /* ============================================================
    CONTACT — neon photo on top, details in the corner,
-   three panoramic buttons in one row, QR strip below the photo
+   three panoramic buttons in one row, QR strip below the photo.
+   Everything scrolls together inside .contact-scroll.
    ============================================================ */
+.contact-inner {
+    flex-shrink: 0;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
 .contact-bg {
     position: absolute;
     left: 0; right: 0; top: 0;
-    bottom: 207px;
+    bottom: 205px;
     background: url('../images/Neon-me.png') center / cover no-repeat;
     opacity: 0.5;
+    border-radius: 14px;
     pointer-events: none;
-    z-index: 0;
 }
-.carousel-panel[data-page="contact"] > .contact-header,
-.carousel-panel[data-page="contact"] > .contact-scroll {
+.contact-header {
     position: relative;
-    z-index: 1;
-}
-.carousel-panel > .contact-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    padding: 4px 6px 0;
+    box-sizing: border-box;
     text-align: left;
 }
 .contact-header h2 { margin: 0; text-align: right; }
@@ -1267,25 +1274,28 @@ p {
 }
 .contact-detail .contact-value { font-size: 15px; color: #f2f7ff; }
 
-.contact-scroll { display: flex; flex-direction: column; }
 .contact-actions {
+    position: relative;
     align-self: stretch;
     flex: 1;
+    min-height: 400px;
     margin-top: 0;
     gap: 22px;
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 10px;
+    padding-right: 16px;
 }
+.contact-actions .depth-card { background: rgba(10, 13, 19, 0.65); }
 .contact-qr-panel {
+    position: relative;
     align-self: stretch;
     flex-shrink: 0;
     width: 100%;
     max-width: none;
     height: 165px;
     box-sizing: border-box;
-    margin: 12px 0 0;
+    margin: 40px 0 0;
     padding: 12px 20px 0;
     background: rgba(10, 13, 19, 0.6);
 }
@@ -1295,13 +1305,12 @@ p {
 .contact-qr-panel .qr-label { margin-top: 5px; font-size: 11px; }
 
 @media (max-width: 700px) {
-    .contact-bg { bottom: 0; opacity: 0.3; }
-    .carousel-panel > .contact-header { flex-direction: column-reverse; align-items: center; gap: 12px; }
+    .contact-bg { opacity: 0.3; bottom: 0; }
+    .contact-header { flex-direction: column-reverse; align-items: center; gap: 12px; }
     .contact-header h2 { text-align: center; }
     .contact-details { align-items: flex-start; }
-    .contact-actions { justify-content: center; padding-right: 0; }
+    .contact-actions { justify-content: center; padding-right: 0; min-height: 0; margin-top: 20px; }
     .contact-qr-panel { height: auto; padding-bottom: 14px; }
     .contact-qr-inner-grid { grid-template-columns: repeat(2, 1fr); padding: 0; }
     .depth-card.wide { width: 104px; }
 }
-.contact-actions .depth-card { background: rgba(10, 13, 19, 0.65); }
