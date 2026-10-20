@@ -1314,3 +1314,21 @@ p {
     .contact-qr-inner-grid { grid-template-columns: repeat(2, 1fr); padding: 0; }
     .depth-card.wide { width: 104px; }
 }
+
+.app-gallery { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.app-card { padding: 16px 12px; gap: 9px; }
+.app-card-shot, .app-shot-slot { width: 100%; max-width: 130px; }
+.app-shot-slot { position: relative; aspect-ratio: 1080 / 1920; border-radius: 18px; overflow: hidden; border: 1px solid rgba(196,130,110,0.4); box-shadow: 0 0 22px rgba(196,130,110,0.3); }
+.app-shot-bg { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+.app-shot-logo { position: absolute; left: 50%; bottom: 8px; width: 62%; transform: translateX(-50%); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7)); }
+.app-card-title { font-size: 14px; }
+.app-card-desc { font-size: 11.5px; line-height: 1.5; }
+.app-card-badge { font-size: 9px; letter-spacing: 2px; padding: 4px 10px; }
+.app-card-note { font-size: 10.5px; }
+@media (max-width: 640px) {
+    .app-gallery { gap: 8px; }
+    .app-card { padding: 10px 6px; gap: 6px; }
+    .app-card-desc, .app-card-note { display: none; }
+    .app-card-badge { font-size: 7px; letter-spacing: 1px; padding: 3px 6px; }
+    .app-card-title { font-size: 12px; }
+}
