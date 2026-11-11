@@ -1131,6 +1131,9 @@ p {
     border: 1px solid rgba(196,130,110,0.5); border-radius: 8px; padding: 6px 12px;
 }
 .app-store-btn:hover { color: #FFD65C; border-color: #FFD65C; }
+.app-play-badge { display: block; line-height: 0; }
+.app-play-badge img { display: block; width: 156px; max-width: 100%; height: auto; }
+.app-card .app-qr { max-width: 100%; height: auto; aspect-ratio: 1; }
 .app-card-shot { width: 100%; max-width: 190px; border-radius: 18px; border: 1px solid rgba(196,130,110,0.4); box-shadow: 0 0 22px rgba(196,130,110,0.3); display: block; }
 .app-card-note { font-size: 12px; color: #ead8d0; margin: 0; }
 .app-card-soon { border-style: dashed; opacity: .9; }
