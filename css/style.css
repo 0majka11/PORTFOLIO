@@ -1383,3 +1383,55 @@ p {
     .projects-header-center h2 { font-size: 20px; }
     .projects-header-center .projects-intro-modern { font-size: 12px; }
 }
+
+
+/* Expertise: panoramic tabs */
+.expertise-tab.depth-card.compact{width:158px;min-height:0;height:50px;flex-direction:row;justify-content:center;padding:0 14px;gap:10px;border-radius:12px}
+.expertise-tab.depth-card.compact .depth-card-icon-wrap{width:30px;height:30px;margin:0}
+.expertise-tab.depth-card.compact .depth-card-icon{width:16px;height:16px}
+.expertise-tab.depth-card.compact .depth-card-title{margin:0;font-size:12px;letter-spacing:1.5px;white-space:nowrap}
+.expertise-tab.depth-card.compact .depth-card-underline{display:none}
+
+/* Expertise: presentation dashboard */
+.exp-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.exp-kpi{background:rgba(10,13,19,.6);border:1px solid rgba(196,130,110,.4);border-radius:14px;padding:16px 10px;text-align:center;box-shadow:0 0 18px rgba(196,130,110,.18)}
+.exp-kpi b{display:block;font-size:34px;line-height:1;color:#FFD65C}
+.exp-kpi span{display:block;margin-top:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f0b8a0}
+.exp-two{display:grid;grid-template-columns:1.05fr 1fr;gap:14px;margin-bottom:16px}
+.exp-card{background:rgba(10,13,19,.6);border:1px solid rgba(196,130,110,.4);border-radius:14px;padding:18px 20px;text-align:left;box-shadow:0 0 18px rgba(196,130,110,.18)}
+.exp-card h3,.exp-section-title{margin:0 0 12px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#f0b8a0;text-align:left}
+.exp-section-title{margin:22px 0 12px;text-align:center}
+.exp-check{list-style:none;margin:0;padding:0;font-size:13.5px;line-height:1.9;color:#f2f7ff}
+.exp-check li::before{content:"\2713";color:#FFD65C;margin-right:10px;font-weight:700}
+.exp-card .skills-bars{gap:10px}
+.exp-card .skill-bar p{display:flex;justify-content:space-between}
+.exp-card .skill-bar p em{font-style:normal;color:#f0b8a0}
+.exp-card .bar span{background:linear-gradient(90deg,#c4826e,#FFD65C);box-shadow:none}
+.exp-gantt-card{margin-bottom:16px}
+.exp-gantt-scroll{overflow-x:auto}
+.exp-gantt{position:relative;min-width:620px;font-size:11px;color:#f2f7ff}
+.g-head,.g-row{display:grid;grid-template-columns:170px 1fr;align-items:center}
+.g-months{display:grid;grid-template-columns:repeat(12,1fr);text-align:center;color:#f0b8a0;letter-spacing:1px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.1)}
+.g-name{font-size:13px;padding:10px 0}
+.g-row{border-bottom:1px solid rgba(255,255,255,.06)}
+.g-track{position:relative;height:36px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/12 - 1px),rgba(255,255,255,.05) calc(100%/12 - 1px),rgba(255,255,255,.05) calc(100%/12))}
+.g-bar{position:absolute;top:50%;transform:translateY(-50%);height:16px;border-radius:8px;padding:0 8px;font-size:10px;line-height:16px;white-space:nowrap;color:#10141c;font-weight:700;overflow:hidden}
+.g-live{background:linear-gradient(90deg,#c4826e,#FFD65C)}
+.g-test{background:linear-gradient(90deg,#2f7bff,#8fd2ff)}
+.g-dev{background:repeating-linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.3) 6px,rgba(255,255,255,.12) 6px,rgba(255,255,255,.12) 12px);color:#fff}
+.g-today{position:absolute;top:22px;bottom:0;width:0;left:calc(170px + (100% - 170px) * .9) !important}
+.g-today::before{content:"";position:absolute;top:0;bottom:0;width:2px;background:#ff6b6b;box-shadow:0 0 8px #ff6b6b}
+.g-today em{position:absolute;top:-16px;left:-18px;font-style:normal;font-size:10px;color:#ff9a9a;letter-spacing:1px}
+.exp-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:11px;color:#cfd8e6}
+.exp-legend s{display:inline-block;width:22px;height:8px;border-radius:4px;margin-right:6px;vertical-align:middle;text-decoration:none}
+
+@media (max-width:640px){
+    .expertise-header-row{flex-wrap:nowrap;gap:6px}
+    .expertise-tab.depth-card.compact{width:88px;height:38px;padding:0 6px}
+    .expertise-tab.depth-card.compact .depth-card-icon-wrap{display:none}
+    .expertise-tab.depth-card.compact .depth-card-title{font-size:9px;letter-spacing:1px}
+    .expertise-header-center h2{font-size:20px}
+    .expertise-intro{font-size:12px}
+    .exp-kpis{grid-template-columns:repeat(2,1fr)}
+    .exp-two{grid-template-columns:1fr}
+}
