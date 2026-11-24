@@ -1419,7 +1419,7 @@ p {
 .g-live{background:linear-gradient(90deg,#c4826e,#FFD65C)}
 .g-test{background:linear-gradient(90deg,#2f7bff,#8fd2ff)}
 .g-dev{background:repeating-linear-gradient(135deg,rgba(255,255,255,.3),rgba(255,255,255,.3) 6px,rgba(255,255,255,.12) 6px,rgba(255,255,255,.12) 12px);color:#fff}
-.g-today{position:absolute;top:22px;bottom:0;width:0;left:calc(170px + (100% - 170px) * .9) !important}
+.g-today{position:absolute;top:22px;bottom:0;width:0;}
 .g-today::before{content:"";position:absolute;top:0;bottom:0;width:2px;background:#ff6b6b;box-shadow:0 0 8px #ff6b6b}
 .g-today em{position:absolute;top:-16px;left:-18px;font-style:normal;font-size:10px;color:#ff9a9a;letter-spacing:1px}
 .exp-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:11px;color:#cfd8e6}
@@ -1435,3 +1435,15 @@ p {
     .exp-kpis{grid-template-columns:repeat(2,1fr)}
     .exp-two{grid-template-columns:1fr}
 }
+
+.exp-gantt{font-size:11px;min-width:700px}
+.g-head,.g-row{grid-template-columns:190px 1fr}
+.g-years{display:grid;grid-template-columns:1fr 1fr;text-align:center;color:#FFD65C;font-size:12px;letter-spacing:3px;margin-bottom:2px}
+.g-months{grid-template-columns:repeat(8,1fr) !important}
+.g-months i{font-style:normal}
+.g-group{padding:12px 0 4px;font-size:11px;letter-spacing:3px;font-weight:700;color:#f0b8a0}
+.g-name{font-size:12.5px;padding:5px 0}
+.g-track{height:26px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/8 - 1px),rgba(255,255,255,.05) calc(100%/8 - 1px),rgba(255,255,255,.05) calc(100%/8))}
+.g-bar{height:15px;line-height:15px;font-size:9.5px}
+.g-today{top:56px !important}
+.g-today em{top:-14px}
